@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Cartan-Karlhede Algorithm 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Cartan-Karlhede Algorithm Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cartan-Karlhede Algorithm
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-problem-of-spacetime-equivalence">The Problem of Spacetime Equivalence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-cartan-karlhede-algorithm">The Cartan-Karlhede Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-this-implementation">About This Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics.html">Mathematical Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cartan-Karlhede Algorithm</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<section id="the-problem-of-spacetime-equivalence">
+<h2>The Problem of Spacetime Equivalence<a class="headerlink" href="#the-problem-of-spacetime-equivalence" title="Link to this heading"></a></h2>
+<p>In the theory of general relativity, the gravitational field is represented by the metric of the spacetime, a rank two symmetric tensor of Lorentzian signature. One of the main features of this theory is that it is totally covariant, in the sense the equations of motion are written in a way that are invariant under the change of coordinates.</p>
+<p>While this covariance is a desirable feature of the theory, it comes at a price: the difficulty of knowing whether two metrics are equivalent or not. Given two line elements expressed in different coordinate systems, it’s generally very hard to check if they represent the same physical spacetime.</p>
+<p>For instance, consider the following two line elements:</p>
+<div class="math notranslate nohighlight">
+\[ds^2 = -\left(1-\frac{2M}{r} \right)dt^2 + \left(1-\frac{2M}{r} \right)^{-1}dr^2 + r^2 d\theta^2 + r^2 \sin^2\theta d\phi^2\]</div>
+<div class="math notranslate nohighlight">
+\[d\tilde{s}^2 = - \frac{b^2}{ax^2}(a x^2 -c)e^{2\tau}d\tau^2 +  \frac{4a^3 x^4}{a x^2 -c} dx^2 +  \frac{a^2 c^2 x^4}{4 -c^2 y^2} dy^2
++  \frac{a^2 c^2 x^4 y^2}{4(y^2 + z^2)^2} \left( z^2 dy^2 + y^2 dz^2 - 2 zy \,dydz  \right)\]</div>
+<p>The first line element is the well-known Schwarzschild solution in spherical coordinates, which represents the gravitational field outside a static and spherically symmetric distribution of mass. The second line element appears completely different, but both metrics represent the same gravitational field whenever <span class="math notranslate nohighlight">\(c = 2M\)</span>.</p>
+</section>
+<section id="the-cartan-karlhede-algorithm">
+<h2>The Cartan-Karlhede Algorithm<a class="headerlink" href="#the-cartan-karlhede-algorithm" title="Link to this heading"></a></h2>
+<p>The Cartan-Karlhede algorithm provides a systematic procedure to determine whether two metrics represent the same physical spacetime, by analyzing the functional relations between curvature tensors and their covariant derivatives in appropriately chosen frames.</p>
+<p>The algorithm consists of these main steps:</p>
+<ol class="arabic simple">
+<li><p>Define a constant metric <span class="math notranslate nohighlight">\(\eta_{ab}\)</span> and find a frame for each metric.</p></li>
+<li><p>Compute curvature components and their derivatives in these frames.</p></li>
+<li><p>For each order of derivative, compute:
+- <span class="math notranslate nohighlight">\(\tau_i\)</span>: the minimum number of functionally independent components
+- <span class="math notranslate nohighlight">\(H_i\)</span>: the isotropy group that preserves the form of the curvature and its derivatives</p></li>
+<li><p>Continue until <span class="math notranslate nohighlight">\(\tau_q = \tau_{q-1}\)</span> and <span class="math notranslate nohighlight">\(H_q = H_{q-1}\)</span>.</p></li>
+<li><p>Compare the functional relations between the curvature components of both metrics.</p></li>
+</ol>
+<p>The algorithm guarantees that two metrics are equivalent if and only if there exists a frame for each metric such that all the functional relations between the components of the curvature tensor and its derivatives are identical.</p>
+</section>
+<section id="about-this-implementation">
+<h2>About This Implementation<a class="headerlink" href="#about-this-implementation" title="Link to this heading"></a></h2>
+<p>This Python implementation provides the tools to represent metrics, compute their curvature tensors, and apply the Cartan-Karlhede algorithm to determine equivalence. The implementation uses SymPy for symbolic tensor calculations, allowing for exact results rather than numerical approximations.</p>
+<p>Key features of this implementation include:</p>
+<ul class="simple">
+<li><p>A flexible <cite>Metric</cite> class for representing spacetime metrics</p></li>
+<li><p>Support for both orthonormal (Lorentz) frames and null frames</p></li>
+<li><p>Calculation of curvature tensors (Riemann, Ricci, Weyl) and their derivatives</p></li>
+<li><p>Framework for comparing metrics according to the Cartan-Karlhede algorithm</p></li>
+<li><p>Example implementations from the paper, including the Schwarzschild metric in different coordinate systems</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Cartan-Karlhede Algorithm Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alok Singh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; Cartan-Karlhede Algorithm 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cartan-Karlhede Algorithm
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-metric">Creating a Metric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-curvature-tensors">Computing Curvature Tensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-lorentz-frames">Creating Lorentz Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparing-metrics">Comparing Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-example">Complete Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics.html">Mathematical Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cartan-Karlhede Algorithm</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
+<p>This tutorial provides a step-by-step guide to using the Cartan-Karlhede algorithm implementation.</p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>First, import the necessary modules:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.metric</span><span class="w"> </span><span class="kn">import</span> <span class="n">Metric</span><span class="p">,</span> <span class="n">LorentzFrame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">compare_metrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">diag</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-a-metric">
+<h2>Creating a Metric<a class="headerlink" href="#creating-a-metric" title="Link to this heading"></a></h2>
+<p>To create a metric, you need to define:</p>
+<ol class="arabic simple">
+<li><p>The coordinate symbols</p></li>
+<li><p>The metric components as a Matrix</p></li>
+<li><p>An optional name for the metric</p></li>
+</ol>
+<p>Here’s an example of creating a 4D Minkowski metric:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define coordinate symbols</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define metric components (using diag for a diagonal matrix)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create the metric object</span>
+<span class="n">minkowski_metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">],</span> <span class="s2">&quot;Minkowski 4D&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="computing-curvature-tensors">
+<h2>Computing Curvature Tensors<a class="headerlink" href="#computing-curvature-tensors" title="Link to this heading"></a></h2>
+<p>Once you have a metric, you can compute various curvature tensors:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the Christoffel symbols</span>
+<span class="n">christoffel</span> <span class="o">=</span> <span class="n">minkowski_metric</span><span class="o">.</span><span class="n">christoffel_symbols</span><span class="p">()</span>
+
+<span class="c1"># Compute the Riemann tensor</span>
+<span class="n">riemann</span> <span class="o">=</span> <span class="n">minkowski_metric</span><span class="o">.</span><span class="n">riemann_tensor</span><span class="p">()</span>
+
+<span class="c1"># Compute the Ricci tensor</span>
+<span class="n">ricci</span> <span class="o">=</span> <span class="n">minkowski_metric</span><span class="o">.</span><span class="n">ricci_tensor</span><span class="p">()</span>
+
+<span class="c1"># Compute the Ricci scalar</span>
+<span class="n">ricci_scalar</span> <span class="o">=</span> <span class="n">minkowski_metric</span><span class="o">.</span><span class="n">ricci_scalar</span><span class="p">()</span>
+
+<span class="c1"># Compute the Weyl tensor (in dimension ≥ 3)</span>
+<span class="n">weyl</span> <span class="o">=</span> <span class="n">minkowski_metric</span><span class="o">.</span><span class="n">weyl_tensor</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-lorentz-frames">
+<h2>Creating Lorentz Frames<a class="headerlink" href="#creating-lorentz-frames" title="Link to this heading"></a></h2>
+<p>To apply the Cartan-Karlhede algorithm, you need to define frames for your metrics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a 3D Minkowski metric</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="s2">&quot;Minkowski 3D&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define a frame (column vectors)</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>  <span class="c1"># Timelike vector</span>
+<span class="n">e1</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>  <span class="c1"># Spacelike vector</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># Spacelike vector</span>
+
+<span class="c1"># Create a Lorentz frame</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">LorentzFrame</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="p">[</span><span class="n">e0</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">])</span>
+
+<span class="c1"># Compute curvature in this frame</span>
+<span class="n">frame_curvature</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">curvature_components</span><span class="p">()</span>
+
+<span class="c1"># Compute derivatives of the curvature</span>
+<span class="n">first_derivatives</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">curvature_derivative</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">second_derivatives</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">curvature_derivative</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comparing-metrics">
+<h2>Comparing Metrics<a class="headerlink" href="#comparing-metrics" title="Link to this heading"></a></h2>
+<p>To compare two metrics using the Cartan-Karlhede algorithm:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two metrics and their frames</span>
+<span class="c1"># (assuming you have metric1, frame1, metric2, frame2 defined)</span>
+
+<span class="c1"># Compare the metrics</span>
+<span class="n">are_equivalent</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">compare_metrics</span><span class="p">(</span><span class="n">metric1</span><span class="p">,</span> <span class="n">frame1</span><span class="p">,</span> <span class="n">metric2</span><span class="p">,</span> <span class="n">frame2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Are equivalent: </span><span class="si">{</span><span class="n">are_equivalent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reason: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-example">
+<h2>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading"></a></h2>
+<p>Here’s a complete example that creates and analyzes a flat spacetime:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.metric</span><span class="w"> </span><span class="kn">import</span> <span class="n">Metric</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">diag</span>
+
+<span class="c1"># Create Minkowski metric in 4D</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">],</span> <span class="s2">&quot;Minkowski&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute Riemann tensor</span>
+<span class="n">riemann</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">riemann_tensor</span><span class="p">()</span>
+
+<span class="c1"># Check that all components are zero (flat spacetime)</span>
+<span class="n">all_zero</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">for</span> <span class="n">indices</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">riemann</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">simplify</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
+        <span class="n">all_zero</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-zero component: R_</span><span class="si">{</span><span class="n">indices</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">all_zero</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verified: Minkowski spacetime is flat (all Riemann components are zero)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute Ricci tensor and scalar</span>
+<span class="n">ricci</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">ricci_tensor</span><span class="p">()</span>
+<span class="n">ricci_scalar</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">ricci_scalar</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ricci scalar: </span><span class="si">{</span><span class="n">ricci_scalar</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This tutorial covered the basics of using the Cartan-Karlhede algorithm implementation. For more advanced examples, including null frames and comparing metrics in different coordinate systems, see the <a class="reference internal" href="examples.html"><span class="doc">Examples</span></a> section.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alok Singh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

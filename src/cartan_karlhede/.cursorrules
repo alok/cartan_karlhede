@@ -1,0 +1,7 @@
+goal: implement the Cartan-Karlhede algorithm as described in @cartan_kar.tex.
+
+focus on getting a working impl on germs of generality.
+
+implement it in python. use `uv` for all package management. the repo is already set up . use jaxtyping for shapes
+
+use sphinx to document each function with references to the original latex (and lots of embedded  latex for formulae). then set up  and build everything and give commands that end in me opening the docs/code explnation. basically a more literate programming style

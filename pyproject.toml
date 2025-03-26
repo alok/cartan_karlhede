@@ -1,13 +1,36 @@
 [project]
 name = "cartan-karlhede"
 version = "0.1.0"
-description = "Add your description here"
+description = "Implementation of the Cartan-Karlhede algorithm for determining the equivalence of spacetimes in general relativity"
 readme = "README.md"
-authors = [
-    { name = "Alok Singh", email = "alokbeniwal@gmail.com" }
-]
+authors = [{ name = "Alok Singh", email = "alokbeniwal@gmail.com" }]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "bidict>=0.23.1",
+    "einops>=0.8.1",
+    "einx>=0.3.0",
+    "ipykernel>=6.29.5",
+    "jax>=0.5.3",
+    "jaxlib>=0.5.3",
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.4",
+    "plotly>=6.0.1",
+    "riemax",
+    "scipy>=1.15.2",
+    "sympy>=1.13.3",
+    "torch>=2.4.1",
+    "torchvision>=0.19.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.3.0",
+    "flake8>=7.0.0",
+    "isort>=5.13.2",
+    "mypy>=1.9.0",
+    "pytest>=8.2.0",
+    "pytest-cov>=4.1.0",
+]
 
 [project.scripts]
 cartan-karlhede = "cartan_karlhede:main"
@@ -15,3 +38,21 @@ cartan-karlhede = "cartan_karlhede:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv.sources]
+riemax = { git = "https://github.com/danielkelshaw/riemax" }
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true

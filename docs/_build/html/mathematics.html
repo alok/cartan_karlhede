@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathematical Details &mdash; Cartan-Karlhede Algorithm 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="references.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cartan-Karlhede Algorithm
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mathematical Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-equivalence-problem">The Equivalence Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tensors-and-frames">Tensors and Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-cartan-karlhede-algorithm">The Cartan-Karlhede Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-case-null-frames">Special Case: Null Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cartan-Karlhede Algorithm</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Mathematical Details</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mathematics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mathematical-details">
+<h1>Mathematical Details<a class="headerlink" href="#mathematical-details" title="Link to this heading"></a></h1>
+<p>This section provides the mathematical details of the Cartan-Karlhede algorithm.</p>
+<section id="the-equivalence-problem">
+<h2>The Equivalence Problem<a class="headerlink" href="#the-equivalence-problem" title="Link to this heading"></a></h2>
+<p>In general relativity, two spacetimes are considered equivalent if there exists a diffeomorphism between them that preserves the metric structure. In other words, if two metrics represent the same physical spacetime in different coordinate systems, there should exist a coordinate transformation between them.</p>
+<p>However, finding such a transformation directly is often extremely difficult. The Cartan-Karlhede algorithm provides a systematic approach to determine whether two metrics are equivalent by analyzing their curvature properties.</p>
+</section>
+<section id="tensors-and-frames">
+<h2>Tensors and Frames<a class="headerlink" href="#tensors-and-frames" title="Link to this heading"></a></h2>
+<p>Given a metric <span class="math notranslate nohighlight">\(g_{\mu\\nu}\)</span>, we can compute:</p>
+<ul class="simple">
+<li><p>The Christoffel symbols:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Gamma^{\lambda}_{\mu\\nu} = \\frac{1}{2} g^{\lambda\\sigma} (\\partial_{\mu} g_{\\nu\\sigma} + \\partial_{\\nu} g_{\\mu\\sigma} - \\partial_{\\sigma} g_{\\mu\\nu})\end{split}\]</div>
+<ul class="simple">
+<li><p>The Riemann tensor:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}R^{\\alpha}_{\\beta\\mu\\nu} = \\partial_{\\nu} \\Gamma^{\\alpha}_{\\beta\\mu} - \\partial_{\\mu} \\Gamma^{\\alpha}_{\\beta\\nu} + \\Gamma^{\\alpha}_{\\sigma\\nu} \\Gamma^{\\sigma}_{\\beta\\mu} - \\Gamma^{\\alpha}_{\\sigma\\mu} \\Gamma^{\\sigma}_{\\beta\\nu}\end{split}\]</div>
+<ul class="simple">
+<li><p>The Ricci tensor:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{\\mu\\nu} = R^{\\alpha}_{\\mu\\alpha\\nu}\end{split}\]</div>
+<ul class="simple">
+<li><p>The Ricci scalar:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}R = g^{\\mu\\nu} R_{\\mu\\nu}\end{split}\]</div>
+<ul class="simple">
+<li><p>The Weyl tensor (in dimension ≥ 3):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_{\\mu\\nu\\rho\\sigma} = R_{\\mu\\nu\\rho\\sigma} - \\frac{1}{n-2}(g_{\\mu\\rho}R_{\\sigma\\nu} - g_{\\mu\\sigma}R_{\\rho\\nu} - g_{\\nu\\rho}R_{\\sigma\\mu} + g_{\\nu\\sigma}R_{\\rho\\mu}) + \\frac{R}{(n-1)(n-2)}(g_{\\mu\\rho}g_{\\sigma\\nu} - g_{\\mu\\sigma}g_{\\rho\\nu})\end{split}\]</div>
+<p>We can also introduce a frame <span class="math notranslate nohighlight">\(e_a^\\mu\)</span> that transforms the metric to a constant form <span class="math notranslate nohighlight">\(\\eta_{ab}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_{\\mu\\nu} e_a^\\mu e_b^\\nu = \\eta_{ab}\end{split}\]</div>
+<p>In this frame, we can express the components of the Riemann tensor as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{abcd} = R_{\\mu\\nu\\rho\\sigma} e_a^\\mu e_b^\\nu e_c^\\rho e_d^\\sigma\end{split}\]</div>
+</section>
+<section id="the-cartan-karlhede-algorithm">
+<h2>The Cartan-Karlhede Algorithm<a class="headerlink" href="#the-cartan-karlhede-algorithm" title="Link to this heading"></a></h2>
+<p>The algorithm consists of the following steps:</p>
+<ol class="arabic">
+<li><p>Choose a constant frame metric <span class="math notranslate nohighlight">\(\\eta_{ab}\)</span> (e.g., Minkowski).</p></li>
+<li><p>For each metric, find a frame <span class="math notranslate nohighlight">\(e_a^\\mu\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_{\\mu\\nu} e_a^\\mu e_b^\\nu = \\eta_{ab}\end{split}\]</div>
+</li>
+<li><p>Compute the components of the Riemann tensor and its covariant derivatives in the frame.</p></li>
+<li><p>Define:
+- <span class="math notranslate nohighlight">\(t_i\)</span>: The number of functionally independent components in the set <span class="math notranslate nohighlight">\(\\{R_{abcd}, \\nabla_e R_{abcd}, \\ldots, \\nabla_{e_1} \\cdots \\nabla_{e_i} R_{abcd}\\}\)</span>
+- <span class="math notranslate nohighlight">\(\\tau_i\)</span>: The minimum value of <span class="math notranslate nohighlight">\(t_i\)</span> over all possible frame choices
+- <span class="math notranslate nohighlight">\(H_i\)</span>: The isotropy group preserving the form of the curvature and its derivatives up to order <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p>Continue computing derivatives until:
+- <span class="math notranslate nohighlight">\(\\tau_q = \\tau_{q-1}\)</span> and <span class="math notranslate nohighlight">\(H_q = H_{q-1}\)</span> for some <span class="math notranslate nohighlight">\(q\)</span></p></li>
+<li><p>Compare the functional relations between the components of the curvature tensor and its derivatives for both metrics.</p></li>
+<li><p>The metrics are equivalent if and only if there exists a frame for each metric such that all the functional relations are identical.</p></li>
+</ol>
+</section>
+<section id="special-case-null-frames">
+<h2>Special Case: Null Frames<a class="headerlink" href="#special-case-null-frames" title="Link to this heading"></a></h2>
+<p>For 4D Lorentzian spacetimes, it’s often useful to use null frames, particularly for classification via the Petrov type.</p>
+<p>A null frame consists of a pair of real null vectors <span class="math notranslate nohighlight">\(\\ell\)</span> and <span class="math notranslate nohighlight">\(n\)</span> and a pair of complex conjugate null vectors <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(\\bar{m}\)</span> satisfying:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\ell \\cdot \\ell = n \\cdot n = m \\cdot m = \\bar{m} \\cdot \\bar{m} = 0\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\ell \\cdot m = \\ell \\cdot \\bar{m} = n \\cdot m = n \\cdot \\bar{m} = 0\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\ell \\cdot n = -1, \\quad m \\cdot \\bar{m} = 1\end{split}\]</div>
+<p>In such a frame, the Weyl tensor can be characterized by five complex scalars:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\Psi_0 = C_{\\mu\\nu\\rho\\sigma} \\ell^{\\mu} m^{\\nu} \\ell^{\\rho} m^{\\sigma}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\Psi_1 = C_{\\mu\\nu\\rho\\sigma} \\ell^{\\mu} n^{\\nu} \\ell^{\\rho} m^{\\sigma}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\Psi_2 = C_{\\mu\\nu\\rho\\sigma} \\ell^{\\mu} m^{\\nu} \\bar{m}^{\\rho} n^{\\sigma}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\Psi_3 = C_{\\mu\\nu\\rho\\sigma} \\ell^{\\mu} n^{\\nu} \\bar{m}^{\\rho} n^{\\sigma}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\Psi_4 = C_{\\mu\\nu\\rho\\sigma} n^{\\mu} \\bar{m}^{\\nu} n^{\\rho} \\bar{m}^{\\sigma}\end{split}\]</div>
+<p>The pattern of vanishing of these scalars determines the Petrov type of the spacetime.</p>
+</section>
+<section id="implementation-details">
+<h2>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<p>In our implementation, we:</p>
+<ol class="arabic simple">
+<li><p>Represent the metric and compute its associated tensors using SymPy for symbolic calculations.</p></li>
+<li><p>Implement both Lorentzian frames and null frames.</p></li>
+<li><p>Compute the curvature components and their derivatives in these frames.</p></li>
+<li><p>Analyze the functional relations between components (with some simplifications).</p></li>
+<li><p>Compare metrics based on their curvature properties.</p></li>
+</ol>
+<p>For practical reasons, we make some simplifications:</p>
+<ul class="simple">
+<li><p>We approximate <span class="math notranslate nohighlight">\(\\tau_i\)</span> as <span class="math notranslate nohighlight">\(t_i\)</span> (computing the minimum over all frames is computationally intensive).</p></li>
+<li><p>We use a simplified version of the isotropy group calculation.</p></li>
+<li><p>For covariant derivatives, we use a simplified approach that works well for coordinate-aligned frames.</p></li>
+</ul>
+<p>For more details on the mathematical foundations of the algorithm, see the references section.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="references.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alok Singh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

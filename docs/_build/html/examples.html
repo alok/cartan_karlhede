@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; Cartan-Karlhede Algorithm 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mathematical Details" href="mathematics.html" />
+    <link rel="prev" title="API Reference" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cartan-Karlhede Algorithm
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-examples">Basic Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flat-spacetime">Flat Spacetime</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#d-examples">3D Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#schwarzschild-examples">Schwarzschild Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-examples">Custom Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-examples">Command Line Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-the-justfile">With the Justfile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics.html">Mathematical Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cartan-Karlhede Algorithm</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<p>This section provides examples of using the Cartan-Karlhede algorithm implementation.</p>
+<section id="basic-examples">
+<h2>Basic Examples<a class="headerlink" href="#basic-examples" title="Link to this heading"></a></h2>
+<section id="flat-spacetime">
+<h3>Flat Spacetime<a class="headerlink" href="#flat-spacetime" title="Link to this heading"></a></h3>
+<p>The simplest example is analyzing flat (Minkowski) spacetime:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.simple_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_flat_spacetime</span>
+
+<span class="c1"># Analyze Minkowski metric</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="n">analyze_flat_spacetime</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will compute the Riemann tensor for the Minkowski metric and verify that all components are zero, confirming that the spacetime is flat.</p>
+</section>
+</section>
+<section id="d-examples">
+<h2>3D Examples<a class="headerlink" href="#d-examples" title="Link to this heading"></a></h2>
+<p>The paper “On the Equivalence of Spacetimes, the Cartan-Karlhede Algorithm” by Mergulhão and Batista discusses several 3D metrics. This implementation includes these examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">compare_3d_examples</span>
+
+<span class="c1"># Compare the 3D example metrics</span>
+<span class="n">compare_3d_examples</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will:</p>
+<ol class="arabic simple">
+<li><p>Create five different 3D metrics from the paper</p></li>
+<li><p>Construct appropriate frames for each metric</p></li>
+<li><p>Compare the first metric with each of the others using the Cartan-Karlhede algorithm</p></li>
+</ol>
+<p>The implementation shows that some of these seemingly different metrics actually represent the same geometric spacetime.</p>
+</section>
+<section id="schwarzschild-examples">
+<h2>Schwarzschild Examples<a class="headerlink" href="#schwarzschild-examples" title="Link to this heading"></a></h2>
+<p>The implementation also includes the Schwarzschild metric in different coordinate systems:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">compare_schwarzschild_examples</span>
+
+<span class="c1"># Compare Schwarzschild metrics in different coordinate systems</span>
+<span class="n">compare_schwarzschild_examples</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This example demonstrates that the standard Schwarzschild metric and an alternative representation are equivalent when <span class="math notranslate nohighlight">\(c = 2M\)</span>.</p>
+</section>
+<section id="custom-examples">
+<h2>Custom Examples<a class="headerlink" href="#custom-examples" title="Link to this heading"></a></h2>
+<p>You can create your own examples by defining metrics and comparing them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.metric</span><span class="w"> </span><span class="kn">import</span> <span class="n">Metric</span><span class="p">,</span> <span class="n">LorentzFrame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cartan_karlhede.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">compare_metrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">diag</span><span class="p">,</span> <span class="n">exp</span>
+
+<span class="c1"># Create a simple 2D curved metric</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># First metric: ds^2 = -dt^2 + exp(2t) dx^2</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)]])</span>
+<span class="n">metric1</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="s2">&quot;2D curved spacetime&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a frame for this metric</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">e1</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)]])</span>
+<span class="n">frame1</span> <span class="o">=</span> <span class="n">LorentzFrame</span><span class="p">(</span><span class="n">metric1</span><span class="p">,</span> <span class="p">[</span><span class="n">e0</span><span class="p">,</span> <span class="n">e1</span><span class="p">])</span>
+
+<span class="c1"># Another representation of the same metric with a coordinate transformation</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+
+<span class="c1"># Second metric: ds^2 = -dT^2 + T^2 dX^2</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">metric2</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="n">g2</span><span class="p">,</span> <span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">],</span> <span class="s2">&quot;2D curved spacetime (alternative)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a frame for this metric</span>
+<span class="n">E0</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">E1</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">T</span><span class="p">]])</span>
+<span class="n">frame2</span> <span class="o">=</span> <span class="n">LorentzFrame</span><span class="p">(</span><span class="n">metric2</span><span class="p">,</span> <span class="p">[</span><span class="n">E0</span><span class="p">,</span> <span class="n">E1</span><span class="p">])</span>
+
+<span class="c1"># Compare the metrics</span>
+<span class="n">are_equivalent</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">compare_metrics</span><span class="p">(</span><span class="n">metric1</span><span class="p">,</span> <span class="n">frame1</span><span class="p">,</span> <span class="n">metric2</span><span class="p">,</span> <span class="n">frame2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Are the metrics equivalent? </span><span class="si">{</span><span class="n">are_equivalent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reason: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="command-line-examples">
+<h2>Command Line Examples<a class="headerlink" href="#command-line-examples" title="Link to this heading"></a></h2>
+<p>The package can also be run from the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all examples</span>
+python<span class="w"> </span>-m<span class="w"> </span>cartan_karlhede<span class="w"> </span>--verbose
+
+<span class="c1"># Run only the 3D examples</span>
+python<span class="w"> </span>-m<span class="w"> </span>cartan_karlhede<span class="w"> </span>--example<span class="w"> </span>3d<span class="w"> </span>--verbose
+
+<span class="c1"># Run only the Schwarzschild examples</span>
+python<span class="w"> </span>-m<span class="w"> </span>cartan_karlhede<span class="w"> </span>--example<span class="w"> </span>schwarzschild<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<section id="with-the-justfile">
+<h3>With the Justfile<a class="headerlink" href="#with-the-justfile" title="Link to this heading"></a></h3>
+<p>If using the Justfile, you can run examples with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all examples</span>
+just<span class="w"> </span>run-examples
+
+<span class="c1"># Run only the 3D examples</span>
+just<span class="w"> </span>run-3d
+
+<span class="c1"># Run only the Schwarzschild examples</span>
+just<span class="w"> </span>run-schwarzschild
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mathematics.html" class="btn btn-neutral float-right" title="Mathematical Details" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alok Singh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
