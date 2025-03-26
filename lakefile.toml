@@ -1,0 +1,10 @@
+name = "cartan_karlhede"
+version = "0.1.0"
+defaultTargets = ["cartan_karlhede"]
+
+[[lean_lib]]
+name = "CartanKarlhede"
+
+[[lean_exe]]
+name = "cartan_karlhede"
+root = "Main"

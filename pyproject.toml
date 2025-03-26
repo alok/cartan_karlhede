@@ -1,0 +1,17 @@
+[project]
+name = "cartan-karlhede"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Alok Singh", email = "alokbeniwal@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+cartan-karlhede = "cartan_karlhede:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
